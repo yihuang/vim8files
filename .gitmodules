@@ -1,9 +1,6 @@
 [submodule "bundle/haskell-vim"]
 	path = bundle/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule "bundle/intero-neovim"]
-	path = bundle/intero-neovim
-	url = https://github.com/parsonsmatt/intero-neovim.git
 [submodule "bundle/neomake"]
 	path = bundle/neomake
 	url = https://github.com/neomake/neomake.git
@@ -37,3 +34,9 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/LanguageClient"]
+	path = bundle/LanguageClient
+	url = https://github.com/autozimu/LanguageClient-neovim.git
+[submodule "bundle/python-pep8-indent"]
+	path = bundle/python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git

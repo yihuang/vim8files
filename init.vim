@@ -1,11 +1,11 @@
+filetype off
 execute pathogen#infect()
 
 " defaults for vim only.
+filetype plugin indent on
 if !has('nvim')
     syntax enable
     syntax on
-    filetype off
-    filetype plugin indent on
     set laststatus=2
     set fileencodings=utf-8,gbk
     set hlsearch
@@ -72,6 +72,21 @@ au FileType haskell let g:ale_linters.haskell = ['hlint']
 nnoremap <silent> <leader>aj :ALENext<cr>
 nnoremap <silent> <leader>ak :ALEPrevious<cr>
 
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+      \ 'haskell': ['hie-wrapper'],
+      \ 'python': ['pyls']
+      \ }
+let g:LanguageClient_rootMarkers = ['.git']
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
 " bufexplorer
 nnoremap <C-L> :BufExplorer<CR>
 
@@ -115,53 +130,6 @@ augroup haskellStylish
   " First hindent, then stylish-haskell
   au FileType haskell nnoremap <buffer> <leader>hf :call HaskellFormat('both')<CR>
 augroup END
-
-" intero
-let g:intero_start_immediately = 0
-if has('nvim')
-  let g:intero_type_on_hover = 1
-  let g:intero_window_size = 80
-  let g:intero_vertical_split = 1
-  let g:intero_use_neomake = 0  " use ale
-  set updatetime=1000  " shorter updatetime for type information.
-  augroup interoMaps
-    au!
-    " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
-  
-    " Background process and window management
-    au FileType haskell nnoremap <buffer> <silent> <leader>is :InteroStart<CR>
-    au FileType haskell nnoremap <buffer> <silent> <leader>ik :InteroKill<CR>
-  
-    " Open intero/GHCi split horizontally
-    au FileType haskell nnoremap <buffer> <silent> <leader>io :InteroOpen<CR>
-    " Open intero/GHCi split vertically
-    au FileType haskell nnoremap <buffer> <silent> <leader>iov :InteroOpen<CR><C-W>H
-    au FileType haskell nnoremap <buffer> <silent> <leader>ih :InteroHide<CR>
-  
-    " Reloading (pick one)
-    " Automatically reload on save
-    " au BufWritePost *.hs InteroReload
-    " Manually save and reload
-    au FileType haskell nnoremap <buffer> <silent> <leader>wr :w \| :InteroReload<CR>
-  
-    " Load individual modules
-    au FileType haskell nnoremap <buffer> <silent> <leader>il :InteroLoadCurrentModule<CR>
-    au FileType haskell nnoremap <buffer> <silent> <leader>if :InteroLoadCurrentFile<CR>
-  
-    " Type-related information
-    " Heads up! These next two differ from the rest.
-    au FileType haskell map <buffer> <silent> <leader>t <Plug>InteroGenericType
-    au FileType haskell map <buffer> <silent> <leader>T <Plug>InteroType
-    au FileType haskell nnoremap <buffer> <silent> <leader>it :InteroTypeInsert<CR>
-  
-    " Navigation
-    au FileType haskell nnoremap <buffer> <silent> <leader>jd :InteroGoToDef<CR>
-  
-    " Managing targets
-    " Prompts you to enter targets (no silent):
-    au FileType haskell nnoremap <buffer> <leader>ist :InteroSetTargets<SPACE>
-  augroup END
-end
 
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'    : 'hasktags',
