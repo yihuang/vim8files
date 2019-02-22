@@ -16,18 +16,25 @@ let mapleader = ","
 set sw=4 ts=4 et
 set splitbelow
 set splitright
+nnoremap <leader><CR> :noh\|hi Cursor guibg=red<CR>
 nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
 nnoremap <Leader>l :setlocal number!<CR>
 nnoremap <Leader>o :set paste!<CR>
 nnoremap j gj
 nnoremap k gk
+" clipboard
 nnoremap <leader>y "*y
 vnoremap <leader>y "*y
 nnoremap <leader>d "*d
 vnoremap <leader>d "*d
 nnoremap <leader>p "*p
 vnoremap <leader>p "*p
-nnoremap <leader><CR> :noh\|hi Cursor guibg=red<CR>
+
+" swap :tag and :tselect
+nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
+nnoremap g<c-]> <c-]>
+vnoremap g<c-]> <c-]>
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -251,27 +258,3 @@ for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
-
-" Cyclic tag navigation {{{
-let g:rt_cw = ''
-function! RT()
-  let cw = expand('<cword>')
-  try
-    if cw != g:rt_cw
-      execute 'tag ' . cw
-      call search(cw,'c',line('.'))
-    else
-      try
-        execute 'tnext'
-      catch /.*/
-        execute 'trewind'
-      endtry
-      call search(cw,'c',line('.'))
-    endif
-    let g:rt_cw = cw
-  catch /.*/
-    echo "no tags on " . cw
-  endtry
-endfunction
-map <C-]> :call RT()<CR>
-" }}}
