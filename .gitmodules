@@ -40,3 +40,9 @@
 [submodule "bundle/python-pep8-indent"]
 	path = bundle/python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
+[submodule "bundle/go"]
+	path = bundle/go
+	url = https://github.com/fatih/vim-go.git
+[submodule "bundle/kdb-vim"]
+	path = bundle/kdb-vim
+	url = https://bitbucket.org/alexcolson/kdb-vim.git

@@ -78,12 +78,18 @@ augroup END
 au FileType haskell let g:ale_linters.haskell = ['hlint']
 nnoremap <silent> <leader>aj :ALENext<cr>
 nnoremap <silent> <leader>ak :ALEPrevious<cr>
+let g:ale_linters = {'go': ['gometalinter']}
+let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
+let g:ale_echo_msg_format = '%linter% says %s'
+let g:go_fmt_command = "goimports"
+" au FileType python :ALEDisable
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie-wrapper'],
-      \ 'python': ['pyls']
       \ }
+" \ 'python': ['pyls']
+
 let g:LanguageClient_rootMarkers = ['.git']
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
@@ -258,3 +264,15 @@ for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
+
+
+" cscope
+nmap <leader><Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader><Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader><Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
