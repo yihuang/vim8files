@@ -46,3 +46,6 @@
 [submodule "bundle/kdb-vim"]
 	path = bundle/kdb-vim
 	url = https://bitbucket.org/alexcolson/kdb-vim.git
+[submodule "bundle/pgsql.vim"]
+	path = bundle/pgsql.vim
+	url = https://github.com/lifepillar/pgsql.vim.git
