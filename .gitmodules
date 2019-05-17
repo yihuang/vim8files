@@ -55,3 +55,9 @@
 [submodule "bundle/gutentags"]
 	path = bundle/gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "bundle/drawit"]
+	path = bundle/drawit
+	url = https://github.com/vim-scripts/DrawIt.git
+[submodule "bundle/airline"]
+	path = bundle/airline
+	url = https://github.com/vim-airline/vim-airline.git

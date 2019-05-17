@@ -276,3 +276,19 @@ nmap <leader><Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader><Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader><Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+
+" pgsql
+let g:sql_type_default = 'pgsql'
+
+" dbext
+let g:dbext_default_profile_psql = 'type=PGSQL:host=192.168.64.4:port=5432:dbname=testdb:user=testdb'
+let g:dbext_default_profile_dev_main = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_main:user=bfdba'
+let g:dbext_default_profile_dev_asset = 'type=PGSQL:host=10.10.15.9:port=5433:dbname=bf_asset:user=bfdba'
+let g:dbext_default_profile_dev_trade = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_trade:user=bfdba'
+let g:dbext_default_profile_dev_audit = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_audit:user=bfdba'
+let g:dbext_default_profile_dev_admin = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_admin:user=bfdba'
+let g:dbext_default_profile_dev_market = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_market:user=bfdba'
+let g:dbext_default_profile = 'psql'
+
+
+let g:gutentags_dont_load = 1
