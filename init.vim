@@ -75,13 +75,14 @@ augroup langs
 augroup END
 
 " ale
-au FileType haskell let g:ale_linters.haskell = ['hlint']
+au FileType haskell let g:ale_linters.haskell = ['stack-build']
 nnoremap <silent> <leader>aj :ALENext<cr>
 nnoremap <silent> <leader>ak :ALEPrevious<cr>
 let g:ale_linters = {'go': ['gometalinter']}
 let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
+let g:ale_linters = {'rust': ['rustc']}
 " au FileType python :ALEDisable
 
 " LanguageClient-neovim
@@ -288,7 +289,8 @@ let g:dbext_default_profile_dev_trade = 'type=PGSQL:host=10.10.15.9:port=5434:db
 let g:dbext_default_profile_dev_audit = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_audit:user=bfdba'
 let g:dbext_default_profile_dev_admin = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_admin:user=bfdba'
 let g:dbext_default_profile_dev_market = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_market:user=bfdba'
-let g:dbext_default_profile = 'psql'
+let g:dbext_default_profile_local_testdb = 'type=PGSQL:host=127.0.0.1:port=5432:dbname=testdb:user=yihuang:passwd=123456'
+let g:dbext_default_profile = 'local_testdb'
 
 
 let g:gutentags_dont_load = 1
