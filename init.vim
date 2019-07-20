@@ -66,8 +66,6 @@ augroup langs
   au!
   au FileType python,lua set foldmethod=indent foldnestmax=2
   au FileType vim set foldmethod=indent foldnestmax=2 sw=2
-  au BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-  au BufWrite *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&"
   " Source the vimrc file after saving it
   au BufWritePost .vimrc source $MYVIMRC
   au BufWritePost *.hs,*.hsc silent !update-tags %
@@ -82,8 +80,6 @@ let g:ale_linters = {'go': ['gometalinter']}
 let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
-let g:ale_linters = {'rust': ['rustc']}
-" au FileType python :ALEDisable
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
@@ -277,6 +273,10 @@ nmap <leader><Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader><Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader><Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+
+" racer (rust)
+au FileType rust nmap <C-]> <Plug>(rust-def)
+au FileType rust nmap gd <Plug>(rust-doc)
 
 " pgsql
 let g:sql_type_default = 'pgsql'
