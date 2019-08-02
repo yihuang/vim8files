@@ -79,3 +79,9 @@
 [submodule "bundle/rust"]
 	path = bundle/rust
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule "bundle/emmet"]
+	path = bundle/emmet
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "bundle/purescript"]
+	path = bundle/purescript
+	url = https://github.com/raichoo/purescript-vim.git
