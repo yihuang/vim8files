@@ -85,3 +85,6 @@
 [submodule "bundle/purescript"]
 	path = bundle/purescript
 	url = https://github.com/raichoo/purescript-vim.git
+[submodule "bundle/vue"]
+	path = bundle/vue
+	url = https://github.com/posva/vim-vue.git

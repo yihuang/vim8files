@@ -46,7 +46,6 @@ set termguicolors
 colorscheme solarized8_flat
 
 " terminal
-tnoremap <C-w> <C-\><C-n><C-w>
 if has('nvim')
   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
 endif
@@ -294,3 +293,7 @@ let g:dbext_default_profile = 'local_testdb'
 
 
 let g:gutentags_dont_load = 1
+
+
+" purescript
+let purescript_indent_case = 2
