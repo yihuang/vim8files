@@ -297,3 +297,6 @@ let g:gutentags_dont_load = 1
 
 " purescript
 let purescript_indent_case = 2
+
+
+let g:copy_as_rtf_using_local_buffer = 1

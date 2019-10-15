@@ -88,3 +88,6 @@
 [submodule "bundle/vue"]
 	path = bundle/vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "bundle/copy-as-rtf"]
+	path = bundle/copy-as-rtf
+	url = https://github.com/zerowidth/vim-copy-as-rtf.git
