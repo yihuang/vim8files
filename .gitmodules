@@ -31,9 +31,6 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "bundle/LanguageClient"]
-	path = bundle/LanguageClient
-	url = https://github.com/autozimu/LanguageClient-neovim.git
 [submodule "bundle/python-pep8-indent"]
 	path = bundle/python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
@@ -91,3 +88,6 @@
 [submodule "bundle/copy-as-rtf"]
 	path = bundle/copy-as-rtf
 	url = https://github.com/zerowidth/vim-copy-as-rtf.git
+[submodule "bundle/coc"]
+	path = bundle/coc
+	url = https://github.com/neoclide/coc.nvim.git
