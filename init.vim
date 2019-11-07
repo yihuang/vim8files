@@ -277,6 +277,9 @@ nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 au FileType rust nmap <C-]> <Plug>(rust-def)
 au FileType rust nmap gd <Plug>(rust-doc)
 
+" rust
+let g:rustfmt_autosave = 1
+
 " pgsql
 let g:sql_type_default = 'pgsql'
 
