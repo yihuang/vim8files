@@ -55,9 +55,6 @@
 [submodule "bundle/zytutil"]
 	path = bundle/zytutil
 	url = https://github.com/sillybun/zytutil.git
-[submodule "bundle/vimim"]
-	path = bundle/vimim
-	url = https://github.com/vim-scripts/VimIM.git
 [submodule "bundle/hindent"]
 	path = bundle/hindent
 	url = https://github.com/alx741/vim-hindent.git
