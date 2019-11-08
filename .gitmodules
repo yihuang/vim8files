@@ -40,9 +40,6 @@
 [submodule "bundle/dbext"]
 	path = bundle/dbext
 	url = https://github.com/vim-scripts/dbext.vim
-[submodule "bundle/gutentags"]
-	path = bundle/gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule "bundle/drawit"]
 	path = bundle/drawit
 	url = https://github.com/vim-scripts/DrawIt.git
