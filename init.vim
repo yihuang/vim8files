@@ -12,6 +12,10 @@ if !has('nvim')
     set incsearch
 endif
 
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
+
 let mapleader = ","
 set sw=4 ts=4 et
 set splitbelow
@@ -98,14 +102,15 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 " bufexplorer
 nnoremap <C-L> :BufExplorer<CR>
+let g:bufExplorerShowRelativePath=1
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-grepper
-nnoremap <leader>g :Grepper -tool git -highlight<cr>
-nnoremap <leader>G :Grepper -tool rg -highlight<cr>
+nnoremap <leader>g :Grepper -tool git -highlight -cword<cr>
+nnoremap <leader>G :Grepper -tool rg -highlight -cword<cr>
 nnoremap gs <plug>(GrepperOperator)
 xnoremap gs <plug>(GrepperOperator)
 
@@ -182,19 +187,6 @@ let g:tagbar_type_haskell = {
         \ 'instance' : 'ft'
     \ }
     \ }
-let g:tagbar_type_rust = {
-            \ 'ctagstype' : 'rust',
-            \ 'kinds' : [
-            \'T:types,type definitions',
-            \'f:functions,function definitions',
-            \'g:enum,enumeration names',
-            \'s:structure names',
-            \'m:modules,module names',
-            \'c:consts,static constants',
-            \'t:traits,traits',
-            \'i:impls,trait implementations',
-            \]
-            \}
 
 function! VisualSelection(direction, extra_filter) range
   let l:saved_reg = @"
@@ -273,9 +265,6 @@ nmap <leader><Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader><Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 
-" racer (rust)
-au FileType rust nmap <C-]> <Plug>(rust-def)
-
 " rust
 let g:rustfmt_autosave = 1
 
@@ -299,10 +288,11 @@ let purescript_indent_case = 2
 " rtf
 let g:copy_as_rtf_using_local_buffer = 1
 
+" racer (rust)
+au FileType rust nmap <C-]> <Plug>(rust-def)
+
 " coc
 set hidden
-set nobackup
-set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
@@ -361,3 +351,18 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+function! Coctagfunc(pattern, flags, info) abort
+	if a:flags != "c"
+		return v:null
+	endif
+
+	let name = expand("<cword>")
+	execute("call CocAction('jumpDefinition')")
+	let filename = expand('%:p')
+	let cursor_pos = getpos(".")
+	let cmd = '/\%'.cursor_pos[1].'l\%'.cursor_pos[2].'c/'
+	execute("normal \<C-o>")
+	return [ { 'name': name, 'filename': filename, 'cmd': cmd } ]
+endfunction
+" au FileType rust set tagfunc=Coctagfunc
