@@ -103,6 +103,7 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 " bufexplorer
 nnoremap <C-L> :BufExplorer<CR>
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerShowDirectories=0
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
