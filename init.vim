@@ -344,6 +344,8 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " go format
+  autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
 
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -367,3 +369,6 @@ function! Coctagfunc(pattern, flags, info) abort
 	return [ { 'name': name, 'filename': filename, 'cmd': cmd } ]
 endfunction
 " au FileType rust set tagfunc=Coctagfunc
+
+" golang
+let g:go_def_mapping_enabled = 0

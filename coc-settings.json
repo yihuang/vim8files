@@ -1,4 +1,11 @@
 {
     "coc.preferences.diagnostic.displayByAle": true,
-    "rust.clippy_preference" : "on"
+    "rust.clippy_preference" : "on",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"]
+        }
+    }
 }
