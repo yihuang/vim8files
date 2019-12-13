@@ -289,9 +289,6 @@ let purescript_indent_case = 2
 " rtf
 let g:copy_as_rtf_using_local_buffer = 1
 
-" racer (rust)
-au FileType rust nmap <C-]> <Plug>(rust-def)
-
 " coc
 set hidden
 set cmdheight=2

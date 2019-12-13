@@ -58,9 +58,6 @@
 [submodule "bundle/hindent"]
 	path = bundle/hindent
 	url = https://github.com/alx741/vim-hindent.git
-[submodule "bundle/racer"]
-	path = bundle/racer
-	url = https://github.com/racer-rust/vim-racer.git
 [submodule "bundle/rust"]
 	path = bundle/rust
 	url = https://github.com/rust-lang/rust.vim.git
