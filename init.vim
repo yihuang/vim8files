@@ -369,3 +369,14 @@ endfunction
 
 " golang
 let g:go_def_mapping_enabled = 0
+
+" open Typora
+if has('mac')
+  function! s:typora_launch()
+      " Launch Typora
+      call system("open -a Typora \"" . expand("%") . "\"")
+      setlocal autoread
+  endfunction
+
+  command! Typora call s:typora_launch()
+endif
