@@ -370,6 +370,9 @@ endfunction
 " golang
 let g:go_def_mapping_enabled = 0
 
+" fzf
+nnoremap <C-P> :Files<CR>
+
 " open Typora
 if has('mac')
   function! s:typora_launch()
