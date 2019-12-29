@@ -44,3 +44,4 @@ ln -s $PROJ/ $HOME/.vim
 
 * `<leader>c*`: nerd commenter
 * `<leader>M`: magit
+* `<leader>s*`: gutentags cscope
