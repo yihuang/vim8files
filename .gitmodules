@@ -4,9 +4,6 @@
 [submodule "bundle/neomake"]
 	path = bundle/neomake
 	url = https://github.com/neomake/neomake.git
-[submodule "bundle/bufexplorer"]
-	path = bundle/bufexplorer
-	url = https://github.com/jlanzarotta/bufexplorer.git
 [submodule "bundle/vim-solarized8"]
 	path = bundle/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
@@ -16,12 +13,6 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule "bundle/vim-grepper"]
-	path = bundle/vim-grepper
-	url = https://github.com/mhinz/vim-grepper.git
-[submodule "bundle/fzf"]
-	path = bundle/fzf
-	url = https://github.com/junegunn/fzf.vim.git
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -82,3 +73,12 @@
 [submodule "bundle/rhubarb"]
 	path = bundle/rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/leaderf"]
+	path = bundle/leaderf
+	url = https://github.com/Yggdroot/LeaderF.git
+[submodule "bundle/gutentags"]
+	path = bundle/gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git

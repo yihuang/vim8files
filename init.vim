@@ -3,29 +3,37 @@ execute pathogen#infect()
 
 " defaults for vim only.
 filetype plugin indent on
-if !has('nvim')
-    syntax enable
-    syntax on
-    set laststatus=2
-    set fileencodings=utf-8,gbk
-    set hlsearch
-    set incsearch
-endif
+syntax enable
+syntax on
+set laststatus=2
+set fileencodings=utf-8,gbk
+set hlsearch
+set incsearch
+set nrformats-=octal
 
 set backupdir=/tmp//
 set directory=/tmp//
 set undodir=/tmp//
 
-let mapleader = ","
 set sw=4 ts=4 et
 set splitbelow
 set splitright
-nnoremap <leader><CR> :noh\|hi Cursor guibg=red<CR>
-nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
-nnoremap <Leader>l :setlocal number!<CR>
-nnoremap <Leader>o :set paste!<CR>
+
 nnoremap j gj
 nnoremap k gk
+" swap :tag and :tselect
+nnoremap <c-]> g<c-]>
+vnoremap <c-]> g<c-]>
+nnoremap g<c-]> <c-]>
+vnoremap g<c-]> <c-]>
+
+" common key bindings
+let mapleader = ","
+nnoremap <leader><CR> :noh\|hi Cursor guibg=red<CR>
+nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>l :setl number!<CR>
+nnoremap <Leader>o :set paste!<CR>
+
 " clipboard
 nnoremap <leader>y "*y
 vnoremap <leader>y "*y
@@ -33,12 +41,6 @@ nnoremap <leader>d "*d
 vnoremap <leader>d "*d
 nnoremap <leader>p "*p
 vnoremap <leader>p "*p
-
-" swap :tag and :tselect
-nnoremap <c-]> g<c-]>
-vnoremap <c-]> g<c-]>
-nnoremap g<c-]> <c-]>
-vnoremap g<c-]> <c-]>
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -50,18 +52,9 @@ set termguicolors
 colorscheme solarized8_flat
 
 " terminal
-if has('nvim')
-  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-endif
 augroup term
   au!
-  if has('nvim')
-    au BufWinEnter,WinEnter term://* startinsert
-    au BufLeave term://* stopinsert
-    au TermClose * bd!|q
-  else
-    au BufWinEnter,WinEnter term://* exec 'normal! i'
-  endif
+  au BufWinEnter,WinEnter term://* exec 'normal! i'
 augroup END
 
 " languages
@@ -84,110 +77,11 @@ let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
 
-" LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-      \ 'haskell': ['hie-wrapper'],
-      \ }
-" \ 'python': ['pyls']
-
-let g:LanguageClient_rootMarkers = ['.git']
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-
-" bufexplorer
-nnoremap <C-L> :BufExplorer<CR>
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerShowDirectories=0
-
-" ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" vim-grepper
-nnoremap <leader>g :Grepper -tool git -highlight -cword<cr>
-nnoremap <leader>G :Grepper -tool rg -highlight -cword<cr>
-nnoremap gs <plug>(GrepperOperator)
-xnoremap gs <plug>(GrepperOperator)
-
-" ycm
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf = '/Users/yihuang/.ycm_extra_conf.py'
-
 " haskell-vim
 let g:haskell_indent_if = 2  " Align 'then' two spaces after 'if'
 let g:haskell_indent_before_where = 2  " Indent 'where' block two spaces under previous body
 let g:haskell_indent_case_alternative = 1  " Allow a second case indent style (see haskell-vim README)
 let g:haskell_indent_let_no_in = 0  " Only next under 'let' if there's an equals sign
-
-" vim-hindent
-let g:hindent_on_save = 0
-function! HaskellFormat(which) abort
-  if a:which ==# 'hindent' || a:which ==# 'both'
-    :Hindent
-  endif
-  if a:which ==# 'stylish' || a:which ==# 'both'
-    silent! exe 'undojoin'
-    silent! exe 'keepjumps %!stylish-haskell'
-  endif
-endfunction
-augroup haskellStylish
-  au!
-  " Just hindent
-  au FileType haskell nnoremap <buffer> <leader>hi :Hindent<CR>
-  " Just stylish-haskell
-  au FileType haskell nnoremap <buffer> <leader>hs :call HaskellFormat('stylish')<CR>
-  " First hindent, then stylish-haskell
-  au FileType haskell nnoremap <buffer> <leader>hf :call HaskellFormat('both')<CR>
-augroup END
-
-let g:tagbar_type_haskell = {
-    \ 'ctagsbin'    : 'hasktags',
-    \ 'ctagsargs'   : '-x -c -o-',
-    \ 'kinds'       : [
-        \  'm:modules:0:1',
-        \  'd:data:0:1',
-        \  'd_gadt:data gadt:0:1',
-        \  'nt:newtype:0:1',
-        \  'c:classes:0:1',
-        \  'i:instances:0:1',
-        \  'cons:constructors:0:1',
-        \  'c_gadt:constructor gadt:0:1',
-        \  'c_a:constructor accessors:1:1',
-        \  't:type names:0:1',
-        \  'pt:pattern types:0:1',
-        \  'pi:pattern implementations:0:1',
-        \  'ft:function types:0:1',
-        \  'fi:function implementations:0:1',
-        \  'o:others:0:1'
-    \ ],
-    \ 'sro'          : '.',
-    \ 'kind2scope'   : {
-        \ 'm'        : 'module',
-        \ 'd'        : 'data',
-        \ 'd_gadt'   : 'd_gadt',
-        \ 'c_gadt'   : 'c_gadt',
-        \ 'nt'       : 'newtype',
-        \ 'cons'     : 'cons',
-        \ 'c_a'      : 'accessor',
-        \ 'c'        : 'class',
-        \ 'i'        : 'instance'
-    \ },
-    \ 'scope2kind'   : {
-        \ 'module'   : 'm',
-        \ 'data'     : 'd',
-        \ 'newtype'  : 'nt',
-        \ 'cons'     : 'c_a',
-        \ 'd_gadt'   : 'c_gadt',
-        \ 'class'    : 'ft',
-        \ 'instance' : 'ft'
-    \ }
-    \ }
 
 function! VisualSelection(direction, extra_filter) range
   let l:saved_reg = @"
@@ -238,50 +132,12 @@ function! InsertGates()
 endfunction
 autocmd BufNewFile *.{h,hpp} call InsertGates()
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" `gf` jumps to the filename under the cursor.  Point at an import statement
-" and jump to it!
-python3 << EOF
-import os
-import sys
-import vim
-for p in sys.path:
-    if os.path.isdir(p):
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
-
-
-" cscope
-nmap <leader><Space>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <leader><Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <leader><Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <leader><Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
-
 " rust
 let g:rustfmt_autosave = 1
+let g:rust_fold = 1
 
 " pgsql
 let g:sql_type_default = 'pgsql'
-
-" dbext
-let g:dbext_default_profile_psql = 'type=PGSQL:host=192.168.64.4:port=5432:dbname=testdb:user=testdb'
-let g:dbext_default_profile_dev_main = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_main:user=bfdba'
-let g:dbext_default_profile_dev_asset = 'type=PGSQL:host=10.10.15.9:port=5433:dbname=bf_asset:user=bfdba'
-let g:dbext_default_profile_dev_trade = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_trade:user=bfdba'
-let g:dbext_default_profile_dev_audit = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_audit:user=bfdba'
-let g:dbext_default_profile_dev_admin = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_admin:user=bfdba'
-let g:dbext_default_profile_dev_market = 'type=PGSQL:host=10.10.15.9:port=5434:dbname=bf_market:user=bfdba'
-let g:dbext_default_profile_local_testdb = 'type=PGSQL:host=127.0.0.1:port=5432:dbname=testdb:user=yihuang:passwd=123456'
-let g:dbext_default_profile = 'local_testdb'
 
 " purescript
 let purescript_indent_case = 2
@@ -306,21 +162,17 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " nmap <silent> [g <Plug>(coc-diagnostic-prev)
 " nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
+" Re-map keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap gf <Plug>(coc-fix-current)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -329,57 +181,41 @@ function! s:show_documentation()
   endif
 endfunction
 
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-nmap <leader>rn <Plug>(coc-rename)
-
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
+setl formatexpr=CocAction('formatSelected')
 augroup mygroup
   autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   " go format
   autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
 
-nmap <leader>qf  <Plug>(coc-fix-current)
 command! -nargs=0 Format :call CocAction('format')
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-function! Coctagfunc(pattern, flags, info) abort
-	if a:flags != "c"
-		return v:null
-	endif
-
-	let name = expand("<cword>")
-	execute("call CocAction('jumpDefinition')")
-	let filename = expand('%:p')
-	let cursor_pos = getpos(".")
-	let cmd = '/\%'.cursor_pos[1].'l\%'.cursor_pos[2].'c/'
-	execute("normal \<C-o>")
-	return [ { 'name': name, 'filename': filename, 'cmd': cmd } ]
-endfunction
-" au FileType rust set tagfunc=Coctagfunc
-
 " golang
 let g:go_def_mapping_enabled = 0
-
-" fzf
-nnoremap <C-P> :Files<CR>
 
 " open Typora
 if has('mac')
   function! s:typora_launch()
       " Launch Typora
       call system("open -a Typora \"" . expand("%") . "\"")
-      setlocal autoread
+      setl autoread
   endfunction
 
   command! Typora call s:typora_launch()
 endif
+
+" leaderf
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_ShortcutF = "<leader>f"
+noremap <leader>b :<C-U><C-R>=printf("Leaderf! buffer %s", "")<CR><CR>
+noremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -w %s", expand('<cword>'))<CR><CR>
+noremap <leader>G :<C-U><C-R>=printf("Leaderf! rg %s", expand('<cword>'))<CR>
+xnoremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -F -w -e %s ", leaderf#Rg#visual())<CR><CR>
+xnoremap <leader>G :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
