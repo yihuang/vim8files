@@ -85,3 +85,15 @@
 [submodule "bundle/gutentags_plus"]
 	path = bundle/gutentags_plus
 	url = https://github.com/skywind3000/gutentags_plus.git
+[submodule "bundle/timelapse"]
+	path = bundle/timelapse
+	url = https://github.com/albfan/vim-timelapse.git
+[submodule "bundle/gitgutter"]
+	path = bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

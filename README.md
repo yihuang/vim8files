@@ -40,3 +40,6 @@ ln -s $PROJ/ $HOME/.vim
 | `<leader>g` | `N`/`X` | Search symbol under cursor(or selection) full word |
 | `<leader>G` | `N`/`X` | Search symbol under cursor(or selection)           |
 
+#### nerd commenter
+
+`<leader>c*`
