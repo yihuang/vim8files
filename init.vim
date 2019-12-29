@@ -191,7 +191,6 @@ augroup mygroup
 augroup end
 
 command! -nargs=0 Format :call CocAction('format')
-command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -213,9 +212,26 @@ endif
 " leaderf
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_ShortcutF = "<leader>f"
+let g:Lf_ShortcutF = "<leader>ff"
 noremap <leader>b :<C-U><C-R>=printf("Leaderf! buffer %s", "")<CR><CR>
 noremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -w %s", expand('<cword>'))<CR><CR>
 noremap <leader>G :<C-U><C-R>=printf("Leaderf! rg %s", expand('<cword>'))<CR>
 xnoremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -F -w -e %s ", leaderf#Rg#visual())<CR><CR>
 xnoremap <leader>G :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+
+" gutentags/gutentags_plus
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_project_root = ['.git', '.root']
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_plus_switch = 1
+noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
+noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
+noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
+noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>

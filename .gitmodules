@@ -82,3 +82,6 @@
 [submodule "bundle/gutentags"]
 	path = bundle/gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "bundle/gutentags_plus"]
+	path = bundle/gutentags_plus
+	url = https://github.com/skywind3000/gutentags_plus.git
