@@ -237,4 +237,4 @@ noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
 
 " nerdtree
-map <C-n> :NERDTreeToggle<CR>
+map <c-n> :NERDTreeToggle<CR>
