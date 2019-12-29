@@ -31,8 +31,6 @@ vnoremap g<c-]> <c-]>
 let mapleader = ","
 nnoremap <leader><CR> :noh\|hi Cursor guibg=red<CR>
 nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
-nnoremap <Leader>l :setl number!<CR>
-nnoremap <Leader>o :set paste!<CR>
 
 " clipboard
 nnoremap <leader>y "*y
