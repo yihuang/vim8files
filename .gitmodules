@@ -97,3 +97,6 @@
 [submodule "bundle/vimagit"]
 	path = bundle/vimagit
 	url = https://github.com/jreybert/vimagit.git
+[submodule "bundle/bufexplorer"]
+	path = bundle/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer.git

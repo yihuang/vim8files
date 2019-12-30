@@ -10,6 +10,7 @@ set fileencodings=utf-8,gbk
 set hlsearch
 set incsearch
 set nrformats-=octal
+set autoread
 
 set backupdir=/tmp//
 set directory=/tmp//
@@ -65,6 +66,9 @@ augroup langs
   au BufWritePost *.hs,*.hsc silent !update-tags %
   au FileType haskell set formatprg=stylish-haskell
 augroup END
+
+" bufexplorer
+let g:bufExplorerShowDirectories=0
 
 " ale
 au FileType haskell let g:ale_linters.haskell = ['stack-build']
@@ -211,7 +215,6 @@ endif
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>b :<C-U><C-R>=printf("Leaderf! buffer %s", "")<CR><CR>
 noremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -w %s", expand('<cword>'))<CR><CR>
 noremap <leader>G :<C-U><C-R>=printf("Leaderf! rg %s", expand('<cword>'))<CR>
 xnoremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -F -w -e %s ", leaderf#Rg#visual())<CR><CR>
