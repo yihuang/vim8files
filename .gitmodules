@@ -76,12 +76,6 @@
 [submodule "bundle/leaderf"]
 	path = bundle/leaderf
 	url = https://github.com/Yggdroot/LeaderF.git
-[submodule "bundle/gutentags"]
-	path = bundle/gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags.git
-[submodule "bundle/gutentags_plus"]
-	path = bundle/gutentags_plus
-	url = https://github.com/skywind3000/gutentags_plus.git
 [submodule "bundle/timelapse"]
 	path = bundle/timelapse
 	url = https://github.com/albfan/vim-timelapse.git
@@ -97,3 +91,6 @@
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "bundle/vimagit"]
+	path = bundle/vimagit
+	url = https://github.com/jreybert/vimagit.git

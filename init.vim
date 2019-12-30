@@ -69,6 +69,10 @@ augroup END
 
 " bufexplorer
 let g:bufExplorerShowDirectories=0
+nmap <c-l> <leader>be
+
+" fugitive
+command GdiffInTab tabedit %|Gdiffsplit
 
 " ale
 au FileType haskell let g:ale_linters.haskell = ['stack-build']
@@ -136,7 +140,7 @@ autocmd BufNewFile *.{h,hpp} call InsertGates()
 
 " rust
 let g:rustfmt_autosave = 1
-let g:rust_fold = 1
+" let g:rust_fold = 1
 
 " pgsql
 let g:sql_type_default = 'pgsql'
@@ -223,6 +227,7 @@ noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 
 " gutentags/gutentags_plus
+let g:gutentags_enabled = 0
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 let g:gutentags_project_root = ['.git', '.root']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
