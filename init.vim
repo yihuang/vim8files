@@ -65,11 +65,15 @@ augroup langs
   au BufWritePost .vimrc source $MYVIMRC
   au BufWritePost *.hs,*.hsc silent !update-tags %
   au FileType haskell set formatprg=stylish-haskell
+
+  " custom typescript formats
+  au FileType typescript set noet
 augroup END
 
 " bufexplorer
 let g:bufExplorerShowDirectories=0
-nmap <c-l> <leader>be
+let g:bufExplorerDisableDefaultKeyMapping=1
+nmap <c-l> :BufExplorer<CR>
 
 " fugitive
 command GdiffInTab tabedit %|Gdiffsplit
@@ -218,13 +222,15 @@ endif
 " leaderf
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -w %s", expand('<cword>'))<CR><CR>
-noremap <leader>G :<C-U><C-R>=printf("Leaderf! rg %s", expand('<cword>'))<CR>
-xnoremap <leader>g :<C-U><C-R>=printf("Leaderf! rg -F -w -e %s ", leaderf#Rg#visual())<CR><CR>
-xnoremap <leader>G :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+let g:Lf_ShortcutF = "<leader>f"
+let g:Lf_ShortcutB = ""
+nnoremap <silent> <leader>g :<C-U><C-R>=printf("Leaderf! rg -w %s", expand('<cword>'))<CR><CR>
+nnoremap <silent> <leader>G :<C-U><C-R>=printf("Leaderf! rg %s", expand('<cword>'))<CR>
+xnoremap <silent> <leader>g :<C-U><C-R>=printf("Leaderf! rg -F -w -e %s ", leaderf#Rg#visual())<CR><CR>
+xnoremap <silent> <leader>G :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+" nnoremap <silent> <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+" nnoremap <silent> <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+nnoremap <silent> <leader>b :<C-U>Leaderf! buffer --bottom<CR>
 
 " gutentags/gutentags_plus
 let g:gutentags_enabled = 0
