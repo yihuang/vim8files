@@ -7,5 +7,8 @@
             "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
             "filetypes": ["go"]
         }
+    },
+    "rust-analyzer": {
+        "serverPath": "/Users/yihuang/.cargo/bin/ra_lsp_server"
     }
 }
