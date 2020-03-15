@@ -11,6 +11,7 @@ set hlsearch
 set incsearch
 set nrformats-=octal
 set autoread
+set textwidth=120
 
 set backupdir=/tmp//
 set directory=/tmp//
@@ -231,6 +232,7 @@ xnoremap <silent> <leader>G :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#
 " nnoremap <silent> <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 " nnoremap <silent> <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 nnoremap <silent> <leader>b :<C-U>Leaderf! buffer --bottom<CR>
+nnoremap <silent> <leader>r :<C-U>Leaderf! rg --recall<CR>
 
 " gutentags/gutentags_plus
 let g:gutentags_enabled = 0
@@ -250,3 +252,9 @@ noremap <silent> <leader>sa :GscopeFind a <C-R><C-W><cr>
 
 " nerdtree
 map <c-n> :NERDTreeToggle<CR>
+
+" markdown
+augroup Markdown
+  autocmd!
+  autocmd FileType markdown set formatoptions+=a
+augroup END
