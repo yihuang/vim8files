@@ -1,6 +1,7 @@
 {
     "coc.preferences.diagnostic.displayByAle": true,
     "rust.clippy_preference" : "on",
+    "rust-analyzer.serverPath": "/Users/huangyi/.cargo/bin/rust-analyzer",
     "languageserver": {
         "golang": {
             "command": "gopls",
