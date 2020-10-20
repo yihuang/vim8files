@@ -87,6 +87,8 @@ let g:ale_linters = {'go': ['gometalinter']}
 let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
+let g:ale_fixers = {'python': ['black', 'isort'], 'nix': ['nixpkgs-fmt']}
+let g:ale_fix_on_save = 1
 
 " haskell-vim
 let g:haskell_indent_if = 2  " Align 'then' two spaces after 'if'
@@ -181,7 +183,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Re-map keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap gf <Plug>(coc-fix-current)
+" nmap gf <Plug>(coc-fix-current)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -257,4 +259,5 @@ map <c-n> :NERDTreeToggle<CR>
 augroup Markdown
   autocmd!
   autocmd FileType markdown set formatoptions+=a
+  autocmd Filetype * if &ft!="markdown"| set formatoptions-=a |endif
 augroup END

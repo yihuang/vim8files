@@ -103,3 +103,6 @@
 [submodule "bundle/graphviz"]
 	path = bundle/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
+[submodule "bundle/nix"]
+	path = bundle/nix
+	url = https://github.com/LnL7/vim-nix.git
