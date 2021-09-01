@@ -83,7 +83,7 @@ command GdiffInTab tabedit %|Gdiffsplit
 au FileType haskell let g:ale_linters.haskell = ['stack-build']
 nnoremap <silent> <leader>aj :ALENext<cr>
 nnoremap <silent> <leader>ak :ALEPrevious<cr>
-let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_linters = {'go': ['gometalinter'], 'cpp': ['ccls']}
 let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
@@ -147,7 +147,7 @@ autocmd BufNewFile *.{h,hpp} call InsertGates()
 
 " rust
 let g:rustfmt_autosave = 1
-" let g:rust_fold = 1
+let g:rust_fold = 1
 
 " pgsql
 let g:sql_type_default = 'pgsql'

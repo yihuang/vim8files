@@ -2,11 +2,46 @@
     "coc.preferences.diagnostic.displayByAle": true,
     "rust.clippy_preference" : "on",
     "rust-analyzer.serverPath": "/Users/huangyi/.cargo/bin/rust-analyzer",
+    "go.goplsPath": "/Users/huangyi/go/bin/gopls",
     "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["go"]
+        "haskell": {
+            "command": "/Users/huangyi/.ghcup/bin/haskell-language-server-macOS-8.6.5",
+            "args": ["--lsp"],
+            "rootPatterns": [
+                "*.cabal",
+                "stack.yaml",
+                "cabal.project",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "haskell",
+                "lhaskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {
+                }
+            }
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
         }
     }
 }

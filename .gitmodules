@@ -106,3 +106,9 @@
 [submodule "bundle/nix"]
 	path = bundle/nix
 	url = https://github.com/LnL7/vim-nix.git
+[submodule "bundle/vim-over"]
+	path = bundle/vim-over
+	url = https://github.com/osyo-manga/vim-over.git
+[submodule "bundle/solidity"]
+	path = bundle/solidity
+	url = https://github.com/tomlion/vim-solidity.git
