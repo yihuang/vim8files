@@ -111,4 +111,4 @@
 	url = https://github.com/osyo-manga/vim-over.git
 [submodule "bundle/solidity"]
 	path = bundle/solidity
-	url = https://github.com/tomlion/vim-solidity.git
+	url = https://github.com/TovarishFin/vim-solidity.git
