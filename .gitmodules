@@ -115,3 +115,9 @@
 [submodule "bundle/copilot"]
 	path = bundle/copilot
 	url = https://github.com/github/copilot.vim.git
+[submodule "bundle/dhall"]
+	path = bundle/dhall
+	url = https://github.com/vmchale/dhall-vim.git
+[submodule "bundle/vim-jsonnet"]
+	path = bundle/vim-jsonnet
+	url = https://github.com/google/vim-jsonnet
