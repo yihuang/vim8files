@@ -112,9 +112,6 @@
 [submodule "bundle/solidity"]
 	path = bundle/solidity
 	url = https://github.com/TovarishFin/vim-solidity.git
-[submodule "bundle/copilot"]
-	path = bundle/copilot
-	url = https://github.com/github/copilot.vim.git
 [submodule "bundle/dhall"]
 	path = bundle/dhall
 	url = https://github.com/vmchale/dhall-vim.git
