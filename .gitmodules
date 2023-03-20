@@ -118,3 +118,6 @@
 [submodule "bundle/vim-jsonnet"]
 	path = bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet
+[submodule "bundle/lilypond-suite"]
+	path = bundle/lilypond-suite
+	url = https://github.com/martineausimon/nvim-lilypond-suite.git
