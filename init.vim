@@ -309,9 +309,17 @@ noremap <silent> <leader>sa :GscopeFind a <C-R><C-W><cr>
 " nerdtree
 map <c-n> :NERDTreeToggle<CR>
 
-" markdown
-augroup Markdown
-  autocmd!
-  autocmd FileType markdown set formatoptions+=a
-  autocmd Filetype * if &ft!="markdown"| set formatoptions-=a |endif
-augroup END
+" vim-go
+let g:go_metalinter_command='golangci-lint run'
+
+" install plug.vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+Plug 'github/copilot.vim'
+call plug#end()

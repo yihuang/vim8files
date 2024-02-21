@@ -124,6 +124,3 @@
 [submodule "bundle/tidal"]
 	path = bundle/tidal
 	url = https://github.com/tidalcycles/vim-tidal.git
-[submodule "bundle/copilot"]
-	path = bundle/copilot
-	url = https://github.com/github/copilot.vim.git

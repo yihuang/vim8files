@@ -1,9 +1,8 @@
 {
     "coc.preferences.diagnostic.displayByAle": true,
     "rust.clippy_preference" : "on",
-    "rust-analyzer.serverPath": "/Users/huangyi/.cargo/bin/rust-analyzer",
+    "rust-analyzer.serverPath": "/Users/huangyi/.nix-profile/bin/rust-analyzer",
     "rust-analyzer.server.extraEnv": { "RUSTUP_TOOLCHAIN": "stable" },
-    "go.goplsPath": "/Users/huangyi/go/bin/gopls",
     "languageserver": {
         "haskell": {
             "command": "/Users/huangyi/.ghcup/bin/haskell-language-server-macOS-8.6.5",
