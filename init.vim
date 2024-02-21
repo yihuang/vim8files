@@ -322,4 +322,12 @@ endif
 call plug#begin()
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'github/copilot.vim'
+Plug 'fatih/vim-go'
+Plug 'liuchengxu/graphviz.vim'
+Plug 'Yggdroot/LeaderF'
+Plug 'martineausimon/nvim-lilypond-suite'
+Plug 'tpope/vim-fugitive'
+Plug 'LnL7/vim-nix'
+Plug 'raichoo/purescript-vim'
+Plug 'google/vim-jsonnet'
 call plug#end()

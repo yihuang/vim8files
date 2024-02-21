@@ -10,15 +10,9 @@
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule "bundle/fugitive"]
-	path = bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/python-pep8-indent"]
 	path = bundle/python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
-[submodule "bundle/go"]
-	path = bundle/go
-	url = https://github.com/fatih/vim-go.git
 [submodule "bundle/kdb-vim"]
 	path = bundle/kdb-vim
 	url = https://bitbucket.org/alexcolson/kdb-vim.git
@@ -52,9 +46,6 @@
 [submodule "bundle/emmet"]
 	path = bundle/emmet
 	url = https://github.com/mattn/emmet-vim.git
-[submodule "bundle/purescript"]
-	path = bundle/purescript
-	url = https://github.com/raichoo/purescript-vim.git
 [submodule "bundle/vue"]
 	path = bundle/vue
 	url = https://github.com/posva/vim-vue.git
@@ -73,9 +64,6 @@
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "bundle/leaderf"]
-	path = bundle/leaderf
-	url = https://github.com/Yggdroot/LeaderF.git
 [submodule "bundle/timelapse"]
 	path = bundle/timelapse
 	url = https://github.com/albfan/vim-timelapse.git
@@ -100,12 +88,6 @@
 [submodule "bundle/Dockerfile"]
 	path = bundle/Dockerfile
 	url = https://github.com/ekalinin/Dockerfile.vim.git
-[submodule "bundle/graphviz"]
-	path = bundle/graphviz
-	url = https://github.com/liuchengxu/graphviz.vim.git
-[submodule "bundle/nix"]
-	path = bundle/nix
-	url = https://github.com/LnL7/vim-nix.git
 [submodule "bundle/vim-over"]
 	path = bundle/vim-over
 	url = https://github.com/osyo-manga/vim-over.git
@@ -115,12 +97,6 @@
 [submodule "bundle/dhall"]
 	path = bundle/dhall
 	url = https://github.com/vmchale/dhall-vim.git
-[submodule "bundle/vim-jsonnet"]
-	path = bundle/vim-jsonnet
-	url = https://github.com/google/vim-jsonnet
-[submodule "bundle/lilypond-suite"]
-	path = bundle/lilypond-suite
-	url = https://github.com/martineausimon/nvim-lilypond-suite.git
 [submodule "bundle/tidal"]
 	path = bundle/tidal
 	url = https://github.com/tidalcycles/vim-tidal.git
