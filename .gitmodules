@@ -52,9 +52,6 @@
 [submodule "bundle/copy-as-rtf"]
 	path = bundle/copy-as-rtf
 	url = https://github.com/zerowidth/vim-copy-as-rtf.git
-[submodule "bundle/coc"]
-	path = bundle/coc
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule "bundle/typescript"]
 	path = bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim.git

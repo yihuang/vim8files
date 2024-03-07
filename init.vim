@@ -320,9 +320,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'neovim/nvim-lspconfig'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'github/copilot.vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'liuchengxu/graphviz.vim'
 Plug 'Yggdroot/LeaderF'
 Plug 'martineausimon/nvim-lilypond-suite'
@@ -330,4 +331,5 @@ Plug 'tpope/vim-fugitive'
 Plug 'LnL7/vim-nix'
 Plug 'raichoo/purescript-vim'
 Plug 'google/vim-jsonnet'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
