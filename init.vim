@@ -344,7 +344,7 @@ Plug 'j-hui/fidget.nvim'
 call plug#end()
 
 lua << EOF
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("off")
 local lspconfig = require("lspconfig")
 lspconfig.gopls.setup{
     settings = {
