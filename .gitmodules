@@ -82,9 +82,6 @@
 [submodule "bundle/toml"]
 	path = bundle/toml
 	url = https://github.com/cespare/vim-toml.git
-[submodule "bundle/Dockerfile"]
-	path = bundle/Dockerfile
-	url = https://github.com/ekalinin/Dockerfile.vim.git
 [submodule "bundle/vim-over"]
 	path = bundle/vim-over
 	url = https://github.com/osyo-manga/vim-over.git
