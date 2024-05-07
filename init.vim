@@ -339,6 +339,8 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
+Plug 'j-hui/fidget.nvim'
+
 call plug#end()
 
 lua << EOF
@@ -352,6 +354,16 @@ lspconfig.gopls.setup{
             },
             staticcheck = true,
             gofumpt = true,
+        },
+    },
+}
+lspconfig.rust_analyzer.setup{
+    settings = {
+        ["rust-analyzer"] = {
+            -- enable clippy on save
+            checkOnSave = {
+                command = "clippy",
+            },
         },
     },
 }
@@ -397,4 +409,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 require'nvim-treesitter.configs'.setup{highlight={enable=true}}
 
+EOF
+
+lua <<EOF
+require("fidget").setup{}
 EOF
