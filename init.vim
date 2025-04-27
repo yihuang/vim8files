@@ -42,6 +42,8 @@ nnoremap <leader>d "*d
 vnoremap <leader>d "*d
 nnoremap <leader>p "*p
 vnoremap <leader>p "*p
+nnoremap <leader>P "*P
+vnoremap <leader>P "*P
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -88,7 +90,7 @@ let g:ale_linters = {'go': ['gometalinter'], 'cpp': ['ccls']}
 let g:go_fmt_fail_silently = 1  " https://github.com/w0rp/ale/issues/609
 let g:ale_echo_msg_format = '%linter% says %s'
 let g:go_fmt_command = "goimports"
-let g:ale_fixers = {'python': ['black', 'isort'], 'nix': ['nixpkgs-fmt'], 'cpp': ['clang-format']}
+let g:ale_fixers = {'python': ['black', 'isort'], 'nix': ['nixfmt'], 'cpp': ['clang-format']}
 let g:ale_fix_on_save = 1
 let g:go_gopls_gofumpt = 1
 
@@ -134,18 +136,6 @@ augroup last_edit
 augroup END
 " Remember info about open buffers on close
 set viminfo^=%
-
-" cpp
-let g:DoxygenToolkit_authorName="HuangYi, Boyaa Inc."
-let g:DoxygenToolkit_versionString="1.0"
-function! InsertGates()
-  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-  execute "normal! i#ifndef " . gatename
-  execute "normal! o#define " . gatename . " "
-  execute "normal! Go#endif /* " . gatename . " */"
-  normal! kk
-endfunction
-autocmd BufNewFile *.{h,hpp} call InsertGates()
 
 " rust
 let g:rustfmt_autosave = 1
@@ -322,7 +312,6 @@ endif
 call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-Plug 'github/copilot.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'liuchengxu/graphviz.vim'
 Plug 'Yggdroot/LeaderF'
@@ -340,6 +329,34 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
 Plug 'j-hui/fidget.nvim'
+
+Plug 'mrcjkb/haskell-tools.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'pmizio/typescript-tools.nvim'
+
+Plug 'stevearc/aerial.nvim'
+
+" avante Deps
+Plug 'stevearc/dressing.nvim'
+Plug 'MunifTanjim/nui.nvim'
+
+" avante Optional deps
+Plug 'hrsh7th/nvim-cmp'
+Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+Plug 'HakonHarnes/img-clip.nvim'
+Plug 'github/copilot.vim'
+
+" Yay, pass source=true if you want to build from source
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+Plug 'aiken-lang/editor-integration-nvim'
+
+Plug 'olimorris/codecompanion.nvim'
+
+" autocmd! User avante.nvim lua << EOF
+" require('avante_lib').load()
+" require('avante').setup()
+" EOF
 
 call plug#end()
 
@@ -368,6 +385,8 @@ lspconfig.rust_analyzer.setup{
     },
 }
 lspconfig.jedi_language_server.setup{}
+lspconfig.clangd.setup{}
+lspconfig.nil_ls.setup{}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -411,6 +430,29 @@ require'nvim-treesitter.configs'.setup{highlight={enable=true}}
 
 EOF
 
-lua <<EOF
+lua << EOF
 require("fidget").setup{}
+require("typescript-tools").setup{}
+require("aerial").setup{}
+require('img-clip').setup{}
+require("codecompanion").setup{
+  strategies = {
+    chat = { adapter = "deepseek", },
+    inline = { adapter = "deepseek" },
+    agent = { adapter = "deepseek" },
+  },
+}
+EOF
+
+lua << EOF
+local opts = { noremap=true, silent=true }
+
+local function quickfix()
+    vim.lsp.buf.code_action({
+        filter = function(a) return a.isPreferred end,
+        apply = true
+    })
+end
+
+vim.keymap.set('n', '<leader>qf', quickfix, opts)
 EOF
