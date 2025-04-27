@@ -352,6 +352,8 @@ Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 Plug 'aiken-lang/editor-integration-nvim'
 
 Plug 'olimorris/codecompanion.nvim'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 
 " autocmd! User avante.nvim lua << EOF
 " require('avante_lib').load()
@@ -442,6 +444,10 @@ require("codecompanion").setup{
     agent = { adapter = "deepseek" },
   },
 }
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {"solidity"},
+})
 EOF
 
 lua << EOF
