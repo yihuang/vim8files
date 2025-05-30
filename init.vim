@@ -352,8 +352,8 @@ Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 Plug 'aiken-lang/editor-integration-nvim'
 
 Plug 'olimorris/codecompanion.nvim'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
+Plug '0xDmtri/foundry.nvim'
+Plug 'liuchengxu/vista.vim'
 
 " autocmd! User avante.nvim lua << EOF
 " require('avante_lib').load()
@@ -389,6 +389,18 @@ lspconfig.rust_analyzer.setup{
 lspconfig.jedi_language_server.setup{}
 lspconfig.clangd.setup{}
 lspconfig.nil_ls.setup{}
+
+local configs = require 'lspconfig.configs'
+configs.solidity = {
+  default_config = {
+    cmd = {'nomicfoundation-solidity-language-server', '--stdio'},
+    filetypes = { 'solidity' },
+    root_dir = lspconfig.util.find_git_ancestor,
+    single_file_support = true,
+  },
+}
+
+lspconfig.solidity.setup {}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -444,10 +456,6 @@ require("codecompanion").setup{
     agent = { adapter = "deepseek" },
   },
 }
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = {"solidity"},
-})
 EOF
 
 lua << EOF
